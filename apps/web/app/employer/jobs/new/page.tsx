@@ -56,11 +56,14 @@ export default function NewJobPage() {
     }
   };
 
+  const inputCls = 'w-full border dark:border-slate-600 rounded-lg px-3 py-2.5 text-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500';
+  const labelCls = 'block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1';
+
   const field = (label: string, key: keyof typeof form, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className={labelCls}>{label}</label>
       <input
-        className="w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+        className={inputCls}
         value={form[key]}
         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
         {...props}
@@ -72,16 +75,16 @@ export default function NewJobPage() {
     <>
       <Navbar />
       <main className="max-w-2xl mx-auto px-4 py-6">
-        <h1 className="text-xl font-bold mb-6">공고 등록</h1>
+        <h1 className="text-xl font-bold mb-6 dark:text-slate-100">공고 등록</h1>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 shadow-sm space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
           {field('공고 제목', 'title', { required: true, placeholder: '예: 카페 서빙 도우미 구합니다' })}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">업종</label>
+            <label className={labelCls}>업종</label>
             <select
               required
-              className="w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className={inputCls}
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value as JobCategory })}
             >
@@ -105,11 +108,11 @@ export default function NewJobPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">상세 내용</label>
+            <label className={labelCls}>상세 내용</label>
             <textarea
               required
               rows={5}
-              className="w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+              className="w-full border dark:border-slate-600 rounded-lg px-3 py-2.5 text-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
               placeholder="업무 내용, 복장, 유의사항 등을 자세히 적어주세요"
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}

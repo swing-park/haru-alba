@@ -47,37 +47,37 @@ export default function JobDetailPage() {
     }
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center text-gray-500">불러오는 중...</div>;
-  if (!job) return <div className="min-h-screen flex items-center justify-center text-gray-500">공고를 찾을 수 없습니다.</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center text-gray-500 dark:bg-slate-950 dark:text-slate-400">불러오는 중...</div>;
+  if (!job) return <div className="min-h-screen flex items-center justify-center text-gray-500 dark:bg-slate-950 dark:text-slate-400">공고를 찾을 수 없습니다.</div>;
 
   return (
     <>
       <Navbar />
       <main className="max-w-2xl mx-auto px-4 py-6">
-        <Link href="/jobs" className="text-sm text-gray-500 hover:text-gray-700 mb-4 inline-block">← 목록으로</Link>
+        <Link href="/jobs" className="text-sm text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 mb-4 inline-block">← 목록으로</Link>
 
-        <div className="bg-white rounded-2xl shadow-sm p-6 mb-4">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6 mb-4">
           <div className="flex justify-between items-start mb-4">
             <span className="text-sm bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{job.category}</span>
             <span className="text-2xl font-bold text-orange-500">{formatPay(job.pay)}</span>
           </div>
 
-          <h1 className="text-xl font-bold text-gray-900 mb-4">{job.title}</h1>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-slate-100 mb-4">{job.title}</h1>
 
           <div className="space-y-3 text-sm mb-6">
-            <div className="flex gap-3 text-gray-700"><span className="w-5">📅</span><span>{formatDate(job.date)} {job.startTime} ~ {job.endTime}</span></div>
-            <div className="flex gap-3 text-gray-700"><span className="w-5">📍</span><span>{job.location.address}</span></div>
-            <div className="flex gap-3 text-gray-700"><span className="w-5">👥</span><span>정원 {job.headcount}명</span></div>
-            <div className="flex gap-3 text-gray-700"><span className="w-5">🏢</span><span>{job.employerId?.name} (신뢰도 {job.employerId?.trustScore}점)</span></div>
+            <div className="flex gap-3 text-gray-700 dark:text-slate-300"><span className="w-5">📅</span><span>{formatDate(job.date)} {job.startTime} ~ {job.endTime}</span></div>
+            <div className="flex gap-3 text-gray-700 dark:text-slate-300"><span className="w-5">📍</span><span>{job.location.address}</span></div>
+            <div className="flex gap-3 text-gray-700 dark:text-slate-300"><span className="w-5">👥</span><span>정원 {job.headcount}명</span></div>
+            <div className="flex gap-3 text-gray-700 dark:text-slate-300"><span className="w-5">🏢</span><span>{job.employerId?.name} (신뢰도 {job.employerId?.trustScore}점)</span></div>
           </div>
 
-          <hr className="mb-4" />
-          <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">{job.description}</div>
+          <hr className="mb-4 dark:border-slate-700" />
+          <div className="text-sm text-gray-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">{job.description}</div>
         </div>
 
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
         {applied ? (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center text-green-700 font-medium">
+          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4 text-center text-green-700 dark:text-green-400 font-medium">
             ✅ 지원 완료! 구인자 확정을 기다려주세요.
           </div>
         ) : user?.type === 'employer' ? null : (

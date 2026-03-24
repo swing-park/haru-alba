@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import './globals.css';
 import RecoilProvider from './RecoilProvider';
+import ThemeProvider from './ThemeProvider';
 
 const geist = Geist({ subsets: ['latin'] });
 
@@ -12,9 +13,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var theme=t?JSON.parse(t).state?.theme:'light';if(theme==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className={geist.className}>
-        <RecoilProvider>{children}</RecoilProvider>
+        <ThemeProvider>
+          <RecoilProvider>{children}</RecoilProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

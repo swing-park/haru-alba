@@ -44,23 +44,23 @@ export default function ApplicationsPage() {
     <>
       <Navbar />
       <main className="max-w-2xl mx-auto px-4 py-6">
-        <Link href="/employer/dashboard" className="text-sm text-gray-500 hover:text-gray-700 mb-4 inline-block">
+        <Link href="/employer/dashboard" className="text-sm text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 mb-4 inline-block">
           ← 대시보드
         </Link>
-        <h1 className="text-xl font-bold mb-6">지원자 목록</h1>
+        <h1 className="text-xl font-bold mb-6 dark:text-slate-100">지원자 목록</h1>
 
         {loading ? (
-          <div className="text-center py-12 text-gray-500">불러오는 중...</div>
+          <div className="text-center py-12 text-gray-500 dark:text-slate-500">불러오는 중...</div>
         ) : applications.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">아직 지원자가 없습니다.</div>
+          <div className="text-center py-12 text-gray-500 dark:text-slate-500">아직 지원자가 없습니다.</div>
         ) : (
           <div className="space-y-3">
             {applications.map((app) => (
-              <div key={app._id} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+              <div key={app._id} className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
                 <div className="flex justify-between items-center mb-2">
                   <div>
-                    <span className="font-semibold">{app.workerId.name}</span>
-                    <span className="text-sm text-gray-500 ml-2">{app.workerId.phone}</span>
+                    <span className="font-semibold dark:text-slate-100">{app.workerId.name}</span>
+                    <span className="text-sm text-gray-500 dark:text-slate-400 ml-2">{app.workerId.phone}</span>
                   </div>
                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                     app.status === 'confirmed' ? 'bg-green-100 text-green-700' :
@@ -71,7 +71,7 @@ export default function ApplicationsPage() {
                     {STATUS_LABEL[app.status]}
                   </span>
                 </div>
-                <div className="text-sm text-gray-500 mb-3">
+                <div className="text-sm text-gray-500 dark:text-slate-400 mb-3">
                   신뢰도 {app.workerId.trustScore}점 · 출근율 {app.workerId.attendanceRate}%
                 </div>
                 <div className="flex gap-2">
