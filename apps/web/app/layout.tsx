@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var theme=t?JSON.parse(t).state?.theme:'light';if(theme==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
+            __html: `(function(){try{var t=sessionStorage.getItem('theme');var theme=t?JSON.parse(t).state?.theme:'light';if(theme==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
           }}
         />
       </head>
